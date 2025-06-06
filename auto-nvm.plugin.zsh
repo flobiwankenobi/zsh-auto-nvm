@@ -31,7 +31,7 @@ _switch_node_version() {
   local current_major=$(_get_current_node_major)
 
   if [[ "$current_major" != "$target_version" ]]; then
-    nvm use "$target_version" || nvm install "$target_version"
+    nvm use "$target_version" --silent || nvm install "$target_version" --silent
   fi
 }
 
@@ -51,7 +51,7 @@ auto_nvm() {
   fi
 
   if [[ -f "$NVMRC_FILE" ]]; then
-    nvm use || nvm install
+    nvm use --silent || nvm install --silent
     return
   fi
 
@@ -59,7 +59,7 @@ auto_nvm() {
     _handle_package_json_version && return
   fi
 
-  [[ "$(node -v 2>/dev/null)" == "$(nvm version default 2>/dev/null)" ]] || nvm use default
+  [[ "$(node -v 2>/dev/null)" == "$(nvm version default 2>/dev/null)" ]] || nvm use default --silent
 }
 
 autoload -U add-zsh-hook
