@@ -46,10 +46,6 @@ _handle_package_json_version() {
 }
 
 auto_nvm() {
-  if [[ " ${plugins[*]} " == *" nvm "* ]] && [[ -f "$NVMRC_FILE" ]]; then
-    return 0
-  fi
-
   if [[ -f "$NVMRC_FILE" ]]; then
     nvm use --silent || nvm install --silent
     return
